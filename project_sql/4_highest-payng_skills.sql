@@ -18,7 +18,7 @@ GROUP BY
     skills_dim.skills
 ORDER BY
     avg_salary DESC
-LIMIT 25
+LIMIT 25;
 
 /*
 The results show the highest-paying skills are far from the most generally in demand.

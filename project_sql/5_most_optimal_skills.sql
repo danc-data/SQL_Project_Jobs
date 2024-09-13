@@ -87,7 +87,7 @@ WHERE
 GROUP BY 
     skills_dim.skill_id  -- Group by skill ID (and implicitly skill name)
 HAVING 
-    COUNT(job_postings_fact.job_id) > 50  -- Filter to remove jobs with little demand
+    COUNT(job_postings_fact.job_id) > 10  -- Filter to remove jobs with little demand
 ORDER BY 
     avg_salary DESC,  -- Sort by average salary in descending order
     demand_count DESC;  -- Sort by job demand (number of jobs) in descending order, secondarily

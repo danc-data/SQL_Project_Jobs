@@ -42,6 +42,7 @@ FROM top_paying_jobs_skills
 GROUP BY 
     skills
 ORDER BY skill_demand DESC
+LIMIT 10
 
 
 /*
