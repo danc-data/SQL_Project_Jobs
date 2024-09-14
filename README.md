@@ -1,15 +1,18 @@
 # Introduction
-Dive into the data job market! Focusing on data analyst roles, this project explores top-paying jobs, in-demand skills, and where high demand meets high salary in data analytics.
-
-SQL queries? Check them out
-here: [project_sql folder](/project_sql/)
-# Background
 How does one navigate the data-analyst job
 market more effectively and efficiently? This project was born from a desire to answer just that question. 
 
+Focusing on data analyst roles, this project explores top-paying jobs, in-demand skills, and where high demand meets high salary in data analytics.
+
+The SQL queries I used in this capstone project can be found below, as well as here: [project_sql folder](/project_sql/)
+
+Here's the link to the data used in this project: [SQL Project Jobs Data](https://drive.google.com/drive/folders/1iF0nfcJmyvkfRGpz_7GQMq1ioRDMczCw?usp=drive_link).
+
+# Background
+
 By focusing on the most desirable and suitable jobs, as well as the highest-paid and in-demand skills, this project streamlines the process of finding optimal career opportunities.
 
-Since this project was to primarily develop and display my SQL skills, the data I used was a generic dataset; not one I actually used for my job search. Although, I could certainly employ the skills I learned in this project to search for roles in this way now.
+Since this project was to primarily develop and display my SQL skills, the data I used was a generic, worldwide, public-domain dataset that was scraped from LinkedIn amongst other sites; not one I actually used for my job search. Although, I could certainly employ the skills I learned in this project to search for roles in this way now.
 
 Note: I learnt more SQL concepts in this project like table manipulation (creation, alteration, dropping), order of execution, data types, wildcards, etc., but I left them out for brevity.
 
@@ -84,7 +87,7 @@ employers value for high-compensation roles.
 
 ```sql
 WITH top_paying_jobs_skills AS ( -- simply joins the job data to the skills data to return the skills associated with each high-paid job
-    WITH top_paying_jobs AS ( -- simply utilises the fildings from the first question to return the top 100 highest-paid jobs for data analysts
+    WITH top_paying_jobs AS ( -- simply utilises the fildings from (1) to return the top 100 highest-paid jobs for data analysts
         SELECT 
             job_id,
             job_title,
@@ -131,7 +134,7 @@ of demand.
 *Bar graph visualising the the top 10 most in-demand skills for the 100 top-paying data analyst jobs*
 
 ### 3. In-Demand Skills for Data Analysis
-This query is similar to (2) in that it returns the skill demand for data analyst jobs. However, this query focuses on all data analyst jobs; not just those that are high-paid.
+This query is similar to (2) in that it returns the skill demand for data analyst jobs. However, this query focuses on all data analyst jobs; not just those that are high-paid and accessible to me.
 ```sql
 WITH jobs_per_skill_id AS ( -- counts the demand per skill ID, prepared to join skill name
     SELECT 
@@ -154,8 +157,7 @@ LIMIT 5;
 ```
 
 Here's the breakdown of the most demanded skills for data analysts in 2023:
-- SQL and Excel remain fundamental, emphasizing the need for strong foundational skills in data processing and spreadsheet
-manipulation.
+- SQL and Excel remain fundamental, emphasizing the need for strong foundational skills in data processing and spreadsheet manipulation.
 - Programming and Visualization Tools like Python, Tableau, and Power Bi are essential, indicating the increasing importance of technical skills in data storytelling and decision support.
 
 ![Highest-Demand Skills](assets/sql_3_image.png)
@@ -169,22 +171,27 @@ FROM job_postings_fact
 INNER JOIN skills_job_dim ON skills_job_dim.job_id = job_postings_fact.job_id
 INNER JOIN skills_dim ON  skills_dim.skill_id = skills_job_dim.skill_id
 WHERE 
-    job_postings_fact.job_title_short = 'Data Analyst' AND
-    job_postings_fact.salary_year_avg IS NOT NULL
+    job_postings_fact.job_title_short = 'Data Analyst' 
+    AND job_postings_fact.salary_year_avg IS NOT NULL
 GROUP BY
     skills_dim.skills
 ORDER BY
     avg_salary DESC
-LIMIT 25
+LIMIT 25;
 ```
-The results show the highest-paying skills are far from the most generally in demand.
-A quick third-party analysis of the results shows us that specialist knowledge, like **big data** and **machine learning** skills appear to be very well-paid, along with 
+The results show the highest-paying skills are far from the most generally in demand. For example, a quick check of the outlier SVN with the hishest average salary, reveals it has just one job requiring it that fit our criteria. 
+
+There is clearly a need to somehow combine the average salary with the demand for each skill. 
+
+A quick third-party analysis of the results shows us that more niche, specialist knowledge, like **big data** and **machine learning** skills appear to be very well-paid, along with 
 **software development & deployment** skills, and **cloud computing** expertise.
 
 ![Highest-Demand Skills](assets/sql_4_image.png)
 *Bar graph visualising the the top 25 highest-paid skills for all data analyst jobs*
 
 ### 5. Most Optimal Skills for Data Analysts
+
+Now, let's find the jobs with the highest salaries AND with adequately hgih demand.
 
 ```sql
 -- Please scroll down if you want to see the concise, final code.
@@ -299,9 +306,9 @@ This project developed my data-analytical toolkit in the following ways:
 
 **VSCode Competency**: I now consider myself competent in the major functionalities that it offers. I now have the groundwork knowledge necessary to master the software by challenging myself to progressively learn.
 
-**Database management with pgAdmin**: I am now familiar with database creation and management software, and the complex setup it requires.
+**Database management with pgAdmin**: I am now familiar with this database creation and management software, and the complex setup it requires insofar as what was required for this project.
 
-**Git & GitHub Familiarity**: This project helped me realise the importance and the power of GitHub in sharing projects and enabling collaboration functionality.
+**Git & GitHub Project Familiarity**: This project helped me realise the importance and the power of GitHub in sharing projects and enabling collaboration functionality.
 
 **and much more.**
 
@@ -329,8 +336,8 @@ skills for data analysts to learn to maximize
 their market value.
 
 ### Closing Thoughts
-This project provides useful insights into the data-analyst job market. The findings from the analyses ultimately serve as an invaluable guide to more efficiently navigating career development.
+This project provides useful insights into the data-analyst job market. The findings from the analyses ultimately serve as an invaluable guide to more effectively navigating career development.
 
 However, the most important aspect of this project by far are the skills I have honed through many hours of practice on this project. 
 
-These skills will now equip me to take on evermore challenging projects to give me real mastery over data into the future.
+These skills will now equip me to take on evermore challenging projects to strive towards mastery over data into the future.
